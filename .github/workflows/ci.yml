@@ -24,11 +24,11 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           persist-credentials: false
       - name: Check out private workflow engine
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: seb5594/hass-workflows
           ref: c5bbbd6ed9b70ab7d05452b2b285f2538cb12c9b
@@ -45,11 +45,11 @@ jobs:
       contents: write
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           persist-credentials: false
       - name: Check out private workflow engine
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: seb5594/hass-workflows
           ref: c5bbbd6ed9b70ab7d05452b2b285f2538cb12c9b

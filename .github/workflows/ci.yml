@@ -1,4 +1,4 @@
-name: Integration CI and ZIP release
+name: Validate and release integration
 
 on:
   push:
@@ -8,58 +8,25 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
-
-env:
-  PYTHONDONTWRITEBYTECODE: '1'
+  contents: write
 
 jobs:
-  validate:
+  pipeline:
+    # Repository secrets are not passed to untrusted fork pull requests.
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
-      - name: Check out source
-        uses: actions/checkout@v7
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
-      - name: Check out private workflow engine
-        uses: actions/checkout@v7
+      - uses: actions/checkout@v7
         with:
           repository: seb5594/hass-workflows
-          ref: c5bbbd6ed9b70ab7d05452b2b285f2538cb12c9b
+          ref: bd27a61b160988ae6202cb6b4589c05818ce9397
           token: ${{ secrets.ORCHESTRATION_PAT }}
           path: .engine
           persist-credentials: false
-      - uses: ./.engine/.actions/integration-ci
-  release:
-    needs: validate
-    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v'))
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    permissions:
-      contents: write
-    steps:
-      - name: Check out source
-        uses: actions/checkout@v7
-        with:
-          persist-credentials: false
-      - name: Check out private workflow engine
-        uses: actions/checkout@v7
-        with:
-          repository: seb5594/hass-workflows
-          ref: c5bbbd6ed9b70ab7d05452b2b285f2538cb12c9b
-          token: ${{ secrets.ORCHESTRATION_PAT }}
-          path: .engine
-          persist-credentials: false
-      - uses: ./.engine/.actions/integration-release
+      - uses: ./.engine/.actions/project
         with:
           token: ${{ github.token }}
-      - uses: actions/upload-artifact@v7
-        with:
-          name: integration-release
-          path: dist/

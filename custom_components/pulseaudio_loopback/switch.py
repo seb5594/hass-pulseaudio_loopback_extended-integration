@@ -1,14 +1,16 @@
 """Switch logic for loading/unloading configurable PulseAudio loopback modules."""
 
+from __future__ import annotations
+
 import logging
 from typing import Any
 
-# Previous import: from typing import Any, override (requires Python 3.12).
+# typing.override needs Python 3.12; the decorator only matters to type checkers.
 try:
     from typing import override
 except ImportError:
     def override(method):
-        """Keep the typing-only decorator compatible with Python 3.11."""
+        """Stand in for the typing-only decorator on older Python versions."""
         return method
 
 # Older Home Assistant versions use voluptuous for their platform schemas.

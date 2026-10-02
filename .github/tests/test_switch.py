@@ -18,7 +18,9 @@ namespace = {
     "IGNORED_SWITCH_WARN": "already set",
 }
 # Load the actual switch class; Home Assistant schema setup is validated by HACS.
-exec(compile(ast.Module(body=[switch], type_ignores=[]), "switch.py", "exec"), namespace)
+future = ast.ImportFrom(module="__future__", names=[ast.alias(name="annotations")], level=0)
+exec(compile(ast.fix_missing_locations(ast.Module(body=[future, switch], type_ignores=[])),
+             "switch.py", "exec"), namespace)
 Switch = namespace["PALoopbackSwitch"]
 
 

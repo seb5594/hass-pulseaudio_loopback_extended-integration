@@ -1,6 +1,20 @@
 # PulseAudio Loopback Extended for Home Assistant
 
-**Version 1.0.0** · [Changelog](CHANGELOG.md) · [Download release ZIPs](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases/latest)
+<!-- badges:begin (generated from project metadata) -->
+[![Version](https://img.shields.io/badge/version-1.0.0-1877A5?style=for-the-badge)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases)
+[![CI](https://img.shields.io/github/actions/workflow/status/seb5594/hass-pulseaudio_loopback_extended-integration/ci.yml?branch=main&label=checks)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/actions/workflows/ci.yml)
+[![Release ZIP downloads](https://img.shields.io/github/downloads/seb5594/hass-pulseaudio_loopback_extended-integration/total?label=ZIP%20downloads)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases)
+[![Stars](https://img.shields.io/github/stars/seb5594/hass-pulseaudio_loopback_extended-integration?label=stars)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/stargazers)
+[![Last commit](https://img.shields.io/github/last-commit/seb5594/hass-pulseaudio_loopback_extended-integration?label=updated)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/commits/main)
+
+[![Add to HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=seb5594&repository=hass-pulseaudio_loopback_extended-integration&category=integration)
+[![Buy Me a Coffee](https://img.shields.io/badge/Support-Buy%20Me%20a%20Coffee-FFDD00?logo=buy-me-a-coffee&logoColor=black&style=for-the-badge)](https://buymeacoffee.com/seb5594)
+[![PayPal](https://img.shields.io/badge/Support-PayPal-0070BA?logo=paypal&logoColor=white&style=for-the-badge)](https://www.paypal.com/donate/?hosted_button_id=QMQPNRENXDN26)
+<!-- badges:end -->
+
+<!-- Replaced raw version text: **Version 1.0.0** · [Changelog](CHANGELOG.md) -->
+
+**[Changelog](CHANGELOG.md)** · **[Download the latest release ZIPs](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases/latest)**
 
 Releases include `pulseaudio_loopback.zip` for HACS and
 `pulseaudio_loopback-1.0.0-manual.zip` for manual installation. Extract the manual
@@ -8,8 +22,8 @@ ZIP into your Home Assistant configuration directory; it already contains
 `custom_components/pulseaudio_loopback/`. `SHA256SUMS.txt` lets you verify both
 downloads. HACS selects its ZIP automatically.
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
-[![GitHub Release](https://img.shields.io/github/v/release/seb5594/hass-pulseaudio_loopback_extended-integration)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases)
+The download badge counts GitHub release assets, not HACS installations, Git clones,
+or geographic locations. GitHub does not expose countries or continents for releases.
 
 This is a custom component for Home Assistant that extends the original [PulseAudio Loopback integration](https://www.home-assistant.io/integrations/pulseaudio_loopback/) by adding advanced audio routing parameters. 
 
@@ -28,14 +42,15 @@ It is designed for advanced audio setups where precise control over the PulseAud
 ## 🛠️️ Installation
 
 ### Method 1: HACS (Recommended)
-1. Open HACS in your Home Assistant instance.
+1. Use the **Add to HACS** button above to open this repository in your instance,
+   or open HACS manually.
 2. Go to **Integrations** -> click the three dots in the top right -> **Custom repositories**.
 3. Add `https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration` and select **Integration** as the category.
 4. Click **Download** on the newly added repository.
 5. Restart Home Assistant.
 
 ### Method 2: Manual Installation
-1. Download the latest release from this repository.
+1. Download the `*-manual.zip` asset from the latest release.
 2. Extract the archive and copy the `custom_components/pulseaudio_loopback` folder into your Home Assistant `config/custom_components/` directory.
 3. Restart Home Assistant.
 

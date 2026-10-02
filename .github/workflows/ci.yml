@@ -1,0 +1,65 @@
+name: Integration CI and ZIP release
+
+on:
+  push:
+    branches: [main, dev]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  PYTHONDONTWRITEBYTECODE: '1'
+
+jobs:
+  validate:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Check out private workflow engine
+        uses: actions/checkout@v4
+        with:
+          repository: seb5594/hass-workflows
+          ref: 42e7e31954076a2cdf7a4af39fe20c5fbc460c70
+          token: ${{ secrets.ORCHESTRATION_PAT }}
+          path: .engine
+          persist-credentials: false
+      - uses: ./.engine/.actions/integration-ci
+  release:
+    needs: validate
+    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Check out private workflow engine
+        uses: actions/checkout@v4
+        with:
+          repository: seb5594/hass-workflows
+          ref: 42e7e31954076a2cdf7a4af39fe20c5fbc460c70
+          token: ${{ secrets.ORCHESTRATION_PAT }}
+          path: .engine
+          persist-credentials: false
+      - uses: ./.engine/.actions/integration-release
+        with:
+          token: ${{ github.token }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: integration-release
+          path: dist/

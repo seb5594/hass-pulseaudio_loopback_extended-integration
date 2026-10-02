@@ -1,9 +1,21 @@
 """Switch logic for loading/unloading configurable PulseAudio loopback modules."""
 
 import logging
-from typing import Any, override
+from typing import Any
 
-import probatio
+# Previous import: from typing import Any, override (requires Python 3.12).
+try:
+    from typing import override
+except ImportError:
+    def override(method):
+        """Keep the typing-only decorator compatible with Python 3.11."""
+        return method
+
+# Older Home Assistant versions use voluptuous for their platform schemas.
+try:
+    import probatio
+except ImportError:
+    import voluptuous as probatio
 from pulsectl import Pulse, PulseError
 
 from homeassistant.components.switch import (

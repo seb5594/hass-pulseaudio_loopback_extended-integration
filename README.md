@@ -1,29 +1,18 @@
 # PulseAudio Loopback Extended for Home Assistant
 
 <!-- badges:begin (generated from project metadata) -->
-[![Version](https://img.shields.io/badge/version-1.0.0-1877A5?style=for-the-badge)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases)
-[![CI](https://img.shields.io/github/actions/workflow/status/seb5594/hass-pulseaudio_loopback_extended-integration/ci.yml?branch=main&label=checks)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/actions/workflows/ci.yml)
-[![Release ZIP downloads](https://img.shields.io/github/downloads/seb5594/hass-pulseaudio_loopback_extended-integration/total?label=ZIP%20downloads)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases)
-[![Stars](https://img.shields.io/github/stars/seb5594/hass-pulseaudio_loopback_extended-integration?label=stars)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/stargazers)
-[![Last commit](https://img.shields.io/github/last-commit/seb5594/hass-pulseaudio_loopback_extended-integration?label=updated)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/commits/main)
+[![version](https://img.shields.io/static/v1?label=version&message=1.0.0&color=1877A5&style=flat)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases) [![released](https://img.shields.io/github/release-date-pre/seb5594/hass-pulseaudio_loopback_extended-integration?label=released&style=flat)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases) [![checks](https://img.shields.io/github/actions/workflow/status/seb5594/hass-pulseaudio_loopback_extended-integration/ci.yml?branch=main&label=checks&style=flat)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/actions/workflows/ci.yml)
 
-[![Add to HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=seb5594&repository=hass-pulseaudio_loopback_extended-integration&category=integration)
-[![Buy Me a Coffee](https://img.shields.io/badge/Support-Buy%20Me%20a%20Coffee-FFDD00?logo=buy-me-a-coffee&logoColor=black&style=for-the-badge)](https://buymeacoffee.com/seb5594)
-[![PayPal](https://img.shields.io/badge/Support-PayPal-0070BA?logo=paypal&logoColor=white&style=for-the-badge)](https://www.paypal.com/donate/?hosted_button_id=QMQPNRENXDN26)
+[![stars](https://img.shields.io/github/stars/seb5594/hass-pulseaudio_loopback_extended-integration?label=stars&style=flat)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/stargazers) [![issues](https://img.shields.io/github/issues/seb5594/hass-pulseaudio_loopback_extended-integration?label=issues&style=flat)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/issues) [![updated](https://img.shields.io/github/last-commit/seb5594/hass-pulseaudio_loopback_extended-integration?label=updated&style=flat)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/commits/main)
+
+[![downloads](https://img.shields.io/github/downloads/seb5594/hass-pulseaudio_loopback_extended-integration/total?label=downloads&style=flat)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases) [![latest release](https://img.shields.io/github/downloads/seb5594/hass-pulseaudio_loopback_extended-integration/latest/total?label=latest%20release&style=flat)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases/latest)
+
+![home assistant](https://img.shields.io/static/v1?label=home%20assistant&message=%E2%89%A5%202023.12.0&color=1877A5&style=flat) ![stage](https://img.shields.io/static/v1?label=stage&message=stable&color=2F855A&style=flat) ![type](https://img.shields.io/static/v1?label=type&message=integration&color=5B6770&style=flat) ![iot class](https://img.shields.io/static/v1?label=iot%20class&message=local%20polling&color=5B6770&style=flat) ![requirements](https://img.shields.io/static/v1?label=requirements&message=1&color=1877A5&style=flat)
+
+![tests](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fseb5594%2Fhass-pulseaudio_loopback_extended-integration%2Fbadges%2Ftests.json&style=flat) ![HACS zip](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fseb5594%2Fhass-pulseaudio_loopback_extended-integration%2Fbadges%2Fzip-size.json&style=flat) ![last build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fseb5594%2Fhass-pulseaudio_loopback_extended-integration%2Fbadges%2Flast-build.json&style=flat)
+
+[![HACS](https://img.shields.io/static/v1?label=HACS&message=Add%20integration&color=41BDF5&style=flat&logo=homeassistantcommunitystore&logoColor=white)](https://my.home-assistant.io/redirect/hacs_repository/?owner=seb5594&repository=hass-pulseaudio_loopback_extended-integration&category=integration) [![Buy Me a Coffee](https://img.shields.io/static/v1?label=Support&message=Buy%20Me%20a%20Coffee&color=FFDD00&logo=buy-me-a-coffee&logoColor=black&style=flat)](https://buymeacoffee.com/seb5594) [![PayPal](https://img.shields.io/static/v1?label=Support&message=PayPal&color=0070BA&logo=paypal&logoColor=white&style=flat)](https://www.paypal.com/donate/?hosted_button_id=QMQPNRENXDN26)
 <!-- badges:end -->
-
-<!-- Replaced raw version text: **Version 1.0.0** · [Changelog](CHANGELOG.md) -->
-
-**[Changelog](CHANGELOG.md)** · **[Download the latest release ZIPs](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases/latest)**
-
-Releases include `pulseaudio_loopback.zip` for HACS and
-`pulseaudio_loopback-1.0.0-manual.zip` for manual installation. Extract the manual
-ZIP into your Home Assistant configuration directory; it already contains
-`custom_components/pulseaudio_loopback/`. `SHA256SUMS.txt` lets you verify both
-downloads. HACS selects its ZIP automatically.
-
-The download badge counts GitHub release assets, not HACS installations, Git clones,
-or geographic locations. GitHub does not expose countries or continents for releases.
 
 This is a custom component for Home Assistant that extends the original [PulseAudio Loopback integration](https://www.home-assistant.io/integrations/pulseaudio_loopback/) by adding advanced audio routing parameters. 
 
@@ -42,7 +31,7 @@ It is designed for advanced audio setups where precise control over the PulseAud
 ## 🛠️️ Installation
 
 ### Method 1: HACS (Recommended)
-1. Use the **Add to HACS** button above to open this repository in your instance,
+1. Use the **HACS** badge above to open this repository in your instance,
    or open HACS manually.
 2. Go to **Integrations** -> click the three dots in the top right -> **Custom repositories**.
 3. Add `https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration` and select **Integration** as the category.
@@ -50,9 +39,18 @@ It is designed for advanced audio setups where precise control over the PulseAud
 5. Restart Home Assistant.
 
 ### Method 2: Manual Installation
-1. Download the `*-manual.zip` asset from the latest release.
-2. Extract the archive and copy the `custom_components/pulseaudio_loopback` folder into your Home Assistant `config/custom_components/` directory.
-3. Restart Home Assistant.
+Run this in the Home Assistant terminal (SSH or Terminal app):
+
+```bash
+cd /config
+mkdir -p custom_components/pulseaudio_loopback
+wget -O /tmp/pulseaudio_loopback.zip \
+  https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases/latest/download/pulseaudio_loopback.zip
+unzip -o /tmp/pulseaudio_loopback.zip -d custom_components/pulseaudio_loopback
+rm /tmp/pulseaudio_loopback.zip
+```
+
+Then restart Home Assistant. `SHA256SUMS.txt` in the release lets you verify the download.
 
 ---
 
@@ -110,4 +108,4 @@ switch:
 ## 🤝 Acknowledgments & Contribution
 This custom integration is based entirely on the [original Home Assistant Core implementation](https://github.com/home-assistant/core/tree/dev/homeassistant/components/pulseaudio_loopback). 
 
-The ultimate goal of this repository is to test these features in the wild and eventually contribute them back via a Pull Request to Home Assistant Core. Feel free to open issues or contribute!
+The ultimate goal of this repository is to test these features in the wild and eventually contribute them back via a Pull Request to Home Assistant Core. Feel free to open issues or contribute! See the [changelog](CHANGELOG.md) for what changed in each release.

@@ -1,0 +1,14 @@
+{
+  "domain": "pulseaudio_loopback",
+  "name": "PulseAudio Loopback Extended",
+  "version": "1.0.0",
+  "codeowners":
+  [
+    "@home-assistant",
+    "@seb5594"
+  ],
+  "documentation": "https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration",
+  "issue_tracker": "https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/issues",
+  "iot_class": "local_polling",
+  "requirements": ["pulsectl==23.5.2"]
+}

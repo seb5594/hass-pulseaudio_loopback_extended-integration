@@ -18,7 +18,9 @@ It is designed for advanced audio setups where precise control over the PulseAud
 - **`rate`**: Define the sample rate (e.g., `48000`, `44100`).
 - **`channels`**: Specify the exact amount of audio channels (e.g., `2` for Stereo, `6` for 5.1 Surround).
 - **`remix`**: Toggle the channel remixing behavior.
-- **`module_args`**: Pass any arbitrary arguments directly to the module (e.g., `use_volume_sharing: false`).
+- **`format`**: Pin the sample format (e.g., `s16le`, `s24le`, `float32le`).
+- **`module_args`**: Pass any other `module-loopback` argument, like `max_latency_msec`, `channel_map` or stream properties. Typos and out-of-range values are caught when Home Assistant checks the configuration, not by the audio server.
+- **Leaves the rest of your audio setup alone**, even when PulseAudio restarts underneath it. See [Safety](#%EF%B8%8F-safety).
 
 ---
 
@@ -72,30 +74,65 @@ switch:
     rate: 48000
     channels: 2 # e.g., 6 for 5.1 audio
     remix: false
-    
-    # Arbitrary Module Arguments
+
+    # Any other module-loopback argument
     module_args:
-      use_volume_sharing: false
+      max_latency_msec: 200
+      sink_input_properties:
+        media.name: Toslink loopback
 ```
+
+The names of your sinks and sources are listed by `pactl list short sinks` and `pactl list short sources`.
 
 ### Configuration Variables
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
 | `platform` | string | **Yes** | | Must be exactly `pulseaudio_loopback`. |
-| `name` | string | No | *PulseAudio Loopback* | The name of the switch entity in Home Assistant. |
-| `source_name` | string | No | | The exact name of the PulseAudio source to loop audio *from*. |
-| `sink_name` | string | No | | The exact name of the PulseAudio sink to loop audio *to*. |
+| `name` | string | No | `paloopback` | The name of the switch entity in Home Assistant. |
+| `source_name` | string | **Yes** | | The exact name of the PulseAudio source to loop audio *from*. |
+| `sink_name` | string | **Yes** | | The exact name of the PulseAudio sink to loop audio *to*. |
+| `host` | string | No | | Address of a remote PulseAudio server. Leave it out for the local one, e.g. the audio server of Home Assistant OS. |
+| `port` | integer | No | `4713` | Port of the remote PulseAudio server. |
 | `source_dont_move` | boolean | No | `false` | **[NEW]** If set to `true`, prevents PulseAudio from automatically moving the source stream to another device. |
 | `sink_dont_move` | boolean | No | `false` | **[NEW]** If set to `true`, prevents PulseAudio from automatically moving the sink stream to another device. |
-| `adjust_time` | integer | No | | Time in seconds to adjust the latency. |
-| `latency_msec` | integer | No | | Fixed latency in milliseconds. |
-| `rate` | integer | No | | **[NEW]** The sample rate to use for the loopback (e.g., `44100`, `48000`, `96000`). |
-| `channels` | integer | No | | **[NEW]** Number of audio channels (e.g., `2` for Stereo, `6` for 5.1). |
+| `adjust_time` | number | No | `1` | How often the latency gets readjusted, in seconds. `0` turns it off, otherwise at least `0.1`. |
+| `latency_msec` | integer | No | `200` | Target latency in milliseconds, `1` to `30000`. |
+| `rate` | integer | No | | **[NEW]** The sample rate to use for the loopback, `4000` to `768000` (e.g., `44100`, `48000`, `96000`). |
+| `channels` | integer | No | | **[NEW]** Number of audio channels, `1` to `32` (e.g., `2` for Stereo, `6` for 5.1). |
 | `remix` | boolean | No | `true` | **[NEW]** Whether to remix channels. Set to `false` to prevent unwanted upmixing/downmixing. |
-| `module_args` | list/dict | No | | **[NEW]** Dictionary of additional raw arguments passed to `module-loopback`. For boolean values, use `true` or `false` (e.g., `use_volume_sharing: false`). |
+| `format` | string | No | | **[NEW]** Sample format, e.g. `s16le`, `s24le`, `s32le` or `float32le`. |
+| `module_args` | mapping | No | | **[NEW]** Further `module-loopback` arguments, see below. |
 
-> **Note on `module_args`:** Be careful when using additional module arguments. Ensure your underlying PulseAudio or PipeWire server supports the specific parameters you are passing, otherwise the module might fail to load.
+Options without a default are left to PulseAudio, which then follows the source.
+
+### `module_args`
+
+Everything `module-loopback` understands can go in here, including the options above (if both are set, `module_args` wins):
+
+| Argument | Accepted values |
+|----------|-----------------|
+| `max_latency_msec` | Upper latency limit in milliseconds, `0` means no limit. |
+| `fast_adjust_threshold_msec` | `0` (off) or at least `100`. |
+| `adjust_threshold_usec` | `1` to `10000`. |
+| `log_interval` | Seconds between latency log lines, `0` turns logging off. |
+| `channel_map` | Positions like `front-left,front-right` (a YAML list works too) or a name like `stereo`. |
+| `sink_input_properties`, `source_output_properties` | Stream properties as a mapping (recommended) or as PulseAudio text such as `media.role=music`. |
+
+`sink` and `source` are not allowed here, they come from `sink_name` and `source_name`. Anything else is rejected with a message that names the offending entry, so it never reaches the audio server. A few arguments need a recent PulseAudio; Home Assistant OS ships PulseAudio 17, which knows all of them.
+
+A switch recognises its loopback by sink and source, just like the core integration. If you change other options while the loopback is running, switch it off and on again to apply them.
+
+## 🛡️ Safety
+
+A loopback switch shares the audio server with everything else, so it is careful about what it touches:
+
+- It only ever unloads a module it has just found on the server and verified as a `module-loopback` with exactly its sink and source. PulseAudio numbers its modules anew after every restart; a remembered number could by then belong to a sound card, so the switch never acts on one.
+- Before loading, the sink and the source have to exist. A source that is the monitor of the target sink is refused, because the loopback would feed the sink back into itself.
+- A loopback that is already running is taken over instead of loaded a second time.
+- Switches talking to the same server take turns, so two automations firing at the same moment cannot pull the connection away from each other.
+
+If something goes wrong anyway, the error shows up in Home Assistant with the reason, for example `Could not turn on TV: sink hdmi_out does not exist on the PulseAudio server`.
 
 ---
 

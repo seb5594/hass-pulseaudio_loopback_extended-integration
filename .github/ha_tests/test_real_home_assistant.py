@@ -5,12 +5,25 @@ engine installs both for every release the Compatibility workflow lists; to run 
 locally: python .engine/.scripts/ha_matrix.py run 2026.9.4
 """
 
-from types import SimpleNamespace
+import sys
+from types import ModuleType, SimpleNamespace
 from unittest.mock import patch
 
 import pytest
 
 pytest.importorskip("pytest_homeassistant_custom_component")
+
+try:
+    import pulsectl  # noqa: F401
+except OSError:
+    # pulsectl loads libpulse on import; CI runners without it get a stand-in,
+    # the tests replace the client anyway.
+    stand_in = ModuleType("pulsectl")
+    stand_in.PulseError = type("PulseError", (Exception,), {})
+    for error in ("PulseIndexError", "PulseOperationFailed"):
+        setattr(stand_in, error, type(error, (stand_in.PulseError,), {}))
+    stand_in.Pulse = object
+    sys.modules["pulsectl"] = stand_in
 
 from pulsectl import PulseIndexError, PulseOperationFailed  # noqa: E402
 

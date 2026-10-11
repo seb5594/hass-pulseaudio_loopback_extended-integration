@@ -2,21 +2,25 @@
 
 Run from the repository root with either `python -m pytest .github/tests` or
 `python -m unittest discover -s .github/tests`. Only the standard library is
-needed; pulsectl is replaced by a small stand-in when it is not installed.
+needed; pulsectl is replaced by a small stand-in when it is not installed or
+libpulse is missing.
 """
 
+import importlib
+import importlib.util
 from pathlib import Path
 import sys
 import threading
 import types
 import unittest
 
-ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT))
+INTEGRATION = (
+    Path(__file__).resolve().parents[2] / "custom_components/pulseaudio_loopback"
+)
 
 try:
     import pulsectl
-except ImportError:  # The tests only need pulsectl's exception classes.
+except (ImportError, OSError):  # The tests only need pulsectl's exception classes.
     pulsectl = types.ModuleType("pulsectl")
     pulsectl.PulseError = type("PulseError", (Exception,), {})
     pulsectl.PulseIndexError = type("PulseIndexError", (pulsectl.PulseError,), {})
@@ -26,12 +30,28 @@ except ImportError:  # The tests only need pulsectl's exception classes.
     pulsectl.Pulse = object
     sys.modules["pulsectl"] = pulsectl
 
-from custom_components.pulseaudio_loopback import arguments  # noqa: E402
-from custom_components.pulseaudio_loopback.loopback import (  # noqa: E402
-    Loopback,
-    LoopbackRefused,
-    PulseServer,
-)
+
+def load_integration(name="pulseaudio_loopback_under_test"):
+    """Load the integration package straight from its folder.
+
+    pytest-homeassistant-custom-component installs a custom_components package of
+    its own, which would win over the repository's one in a plain import.
+    """
+    spec = importlib.util.spec_from_file_location(
+        name, INTEGRATION / "__init__.py", submodule_search_locations=[str(INTEGRATION)]
+    )
+    package = importlib.util.module_from_spec(spec)
+    sys.modules[name] = package
+    spec.loader.exec_module(package)
+    return name
+
+
+PACKAGE = load_integration()
+arguments = importlib.import_module(f"{PACKAGE}.arguments")
+loopback_module = importlib.import_module(f"{PACKAGE}.loopback")
+Loopback = loopback_module.Loopback
+LoopbackRefused = loopback_module.LoopbackRefused
+PulseServer = loopback_module.PulseServer
 
 # The modules a freshly started Home Assistant OS audio server loads first.
 BASE_MODULES = (

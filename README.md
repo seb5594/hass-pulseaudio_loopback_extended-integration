@@ -1,11 +1,27 @@
-# PulseAudio Loopback Extended for Home Assistant
+<!-- header:begin (generated from project metadata) -->
+<h1 align="center">PulseAudio Loopback Extended</h1>
 
-<!-- badges:begin (generated from project metadata) -->
-[![HACS](https://img.shields.io/static/v1?label=HACS&message=Add%20integration&color=41BDF5&style=flat&logo=homeassistantcommunitystore&logoColor=white)](https://my.home-assistant.io/redirect/hacs_repository/?owner=seb5594&repository=hass-pulseaudio_loopback_extended-integration&category=integration)<br>
-![home assistant](https://img.shields.io/static/v1?label=home%20assistant&message=%E2%89%A5%202022.4.0&color=1877A5&style=flat) [![version](https://img.shields.io/static/v1?label=version&message=1.0.0&color=1877A5&style=flat)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases) [![released](https://img.shields.io/github/release-date-pre/seb5594/hass-pulseaudio_loopback_extended-integration?label=released&style=flat)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases) [![checks](https://img.shields.io/github/actions/workflow/status/seb5594/hass-pulseaudio_loopback_extended-integration/ci.yml?branch=main&label=checks&style=flat)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/actions/workflows/ci.yml) [![HA releases](https://img.shields.io/github/actions/workflow/status/seb5594/hass-pulseaudio_loopback_extended-integration/compat.yml?branch=main&label=HA%20releases&style=flat)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/actions/workflows/compat.yml)<br>
-[![downloads](https://img.shields.io/github/downloads/seb5594/hass-pulseaudio_loopback_extended-integration/total?label=downloads&style=flat&color=1877A5)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases) ![ZIP size](https://img.shields.io/static/v1?label=ZIP%20size&message=9.8%20KiB&color=157F71&style=flat) ![tests](https://img.shields.io/static/v1?label=tests&message=20%20passed&color=2F855A&style=flat)<br>
-[![updated](https://img.shields.io/github/last-commit/seb5594/hass-pulseaudio_loopback_extended-integration?label=updated&style=flat)](https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/commits/main)
-<!-- badges:end -->
+---
+
+<p align="center">
+  <a href="https://paypal.me/seb5594"><img src="https://img.shields.io/static/v1?label=Support&amp;message=PayPal&amp;color=0070BA&amp;logo=paypal&amp;logoColor=white&amp;style=for-the-badge" alt="PayPal" height="40"></a>
+  <a href="https://buymeacoffee.com/seb5594"><img src="https://img.shields.io/static/v1?label=Support&amp;message=Buy%20Me%20a%20Coffee&amp;color=FFDD00&amp;logo=buy-me-a-coffee&amp;logoColor=black&amp;style=for-the-badge" alt="Buy Me a Coffee" height="40"></a>
+</p>
+
+<p align="center">
+  <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=seb5594&amp;repository=hass-pulseaudio_loopback_extended-integration&amp;category=integration"><img src="https://img.shields.io/static/v1?label=HACS&amp;message=Add%20integration&amp;color=41BDF5&amp;logo=homeassistantcommunitystore&amp;logoColor=white&amp;style=for-the-badge" alt="HACS" height="28"></a>
+  <a href="https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/actions/workflows/compat.yml"><img src="https://img.shields.io/static/v1?label=home%20assistant&amp;message=%E2%89%A5%202022.4.0&amp;color=1877A5&amp;style=for-the-badge" alt="home assistant" height="28"></a>
+  <a href="https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases/tag/v1.0.0"><img src="https://img.shields.io/static/v1?label=version&amp;message=1.0.0&amp;color=1877A5&amp;style=for-the-badge" alt="version" height="28"></a>
+  <a href="https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases"><img src="https://img.shields.io/github/downloads/seb5594/hass-pulseaudio_loopback_extended-integration/v1.0.0/total?label=downloads&amp;color=1877A5&amp;style=for-the-badge" alt="downloads" height="28"></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/issues"><img src="https://img.shields.io/github/issues/seb5594/hass-pulseaudio_loopback_extended-integration?label=issues&amp;style=flat" alt="issues" height="20"></a>
+  <img src="https://img.shields.io/static/v1?label=tests&amp;message=20%20passed&amp;color=2F855A&amp;style=flat" alt="tests" height="20">
+  <a href="https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/seb5594/hass-pulseaudio_loopback_extended-integration/ci.yml?branch=main&amp;label=checks&amp;style=flat" alt="checks" height="20"></a>
+  <a href="https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration#license"><img src="https://img.shields.io/github/license/seb5594/hass-pulseaudio_loopback_extended-integration?label=license&amp;style=flat" alt="license" height="20"></a>
+</p>
+<!-- header:end -->
 
 This is a custom component for Home Assistant that extends the original [PulseAudio Loopback integration](https://www.home-assistant.io/integrations/pulseaudio_loopback/) by adding advanced audio routing parameters. 
 
@@ -147,7 +163,7 @@ All my projects are built in my spare time, just for the fun of it. Still, they 
 
 If my work helped you or turned out to be useful, show your appreciation with a hot drink for my next sleepless night.
 
-[![Buy Me a Coffee](https://img.shields.io/static/v1?label=Support&message=Buy%20Me%20a%20Coffee&color=FFDD00&logo=buy-me-a-coffee&logoColor=black&style=for-the-badge)](https://buymeacoffee.com/seb5594) [![PayPal](https://img.shields.io/static/v1?label=Support&message=PayPal&color=0070BA&logo=paypal&logoColor=white&style=for-the-badge)](https://www.paypal.com/donate/?hosted_button_id=QMQPNRENXDN26)
+[![PayPal](https://img.shields.io/static/v1?label=Support&message=PayPal&color=0070BA&logo=paypal&logoColor=white&style=for-the-badge)](https://paypal.me/seb5594) [![Buy Me a Coffee](https://img.shields.io/static/v1?label=Support&message=Buy%20Me%20a%20Coffee&color=FFDD00&logo=buy-me-a-coffee&logoColor=black&style=for-the-badge)](https://buymeacoffee.com/seb5594)
 <!-- support:end -->
 
 <!-- license:begin (generated from the license file) -->

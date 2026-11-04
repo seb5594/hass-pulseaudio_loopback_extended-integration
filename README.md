@@ -35,10 +35,11 @@ It is designed for advanced audio setups where precise control over the PulseAud
 
 ## 🛠️️ Installation
 
-### Method 1: HACS (Recommended)
-1. Use the **HACS** badge above to open this repository in your instance,
-   or open HACS manually.
-2. Go to **Integrations** -> click the three dots in the top right -> **Custom repositories**.
+### Method 1: HACS or Marketplace (Recommended)
+1. Use the **HACS · Marketplace** badge above to open this repository in your instance,
+   or open HACS (Home Assistant 2026.10 and older) or **Settings -> Marketplace** (2026.11 and newer) manually.
+2. Manual only: in HACS go to **Integrations** -> click the three dots in the top right ->
+   **Custom repositories**; in the Marketplace open its custom repositories.
 3. Add `https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration` and select **Integration** as the category.
 4. Click **Download** on the newly added repository.
 5. Restart Home Assistant.

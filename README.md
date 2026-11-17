@@ -8,10 +8,10 @@
   <a href="https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/releases"><img src="https://img.shields.io/github/downloads/seb5594/hass-pulseaudio_loopback_extended-integration/v1.0.0/total?label=downloads&amp;color=1877A5&amp;style=for-the-badge" alt="downloads" height="28"></a><br>
   <a href="https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/seb5594/hass-pulseaudio_loopback_extended-integration/ci.yml?branch=main&amp;label=checks&amp;style=flat" alt="checks" height="20"></a>
   <img src="https://img.shields.io/static/v1?label=tests&amp;message=20%20passed&amp;color=2F855A&amp;style=flat" alt="tests" height="20">
-  <a href="https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/issues"><img src="https://img.shields.io/github/issues/seb5594/hass-pulseaudio_loopback_extended-integration?label=issues&amp;style=flat" alt="issues" height="20"></a>
-  <a href="https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration#license"><img src="https://img.shields.io/github/license/seb5594/hass-pulseaudio_loopback_extended-integration?label=license&amp;style=flat" alt="license" height="20"></a><br>
+  <a href="https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration/issues"><img src="https://img.shields.io/github/issues/seb5594/hass-pulseaudio_loopback_extended-integration?label=issues&amp;style=flat" alt="issues" height="20"></a><br>
   <a href="https://paypal.me/seb5594"><img src="https://img.shields.io/static/v1?label=Support&amp;message=PayPal&amp;color=0070BA&amp;logo=paypal&amp;logoColor=white&amp;style=for-the-badge" alt="PayPal" height="24"></a>
-  <a href="https://buymeacoffee.com/seb5594"><img src="https://img.shields.io/static/v1?label=Support%20%F0%9F%8D%BA&amp;message=Buy%20me%20a%20c%CC%B6o%CC%B6f%CC%B6f%CC%B6e%CC%B6e%CC%B6%20Beer&amp;color=FFDD00&amp;style=for-the-badge" alt="Buy me a beer" height="24"></a>
+  <a href="https://buymeacoffee.com/seb5594"><img src="https://img.shields.io/static/v1?label=Support%20%F0%9F%8D%BA&amp;message=Buy%20me%20a%20c%CC%B6o%CC%B6f%CC%B6f%CC%B6e%CC%B6e%CC%B6%20Beer&amp;color=FFDD00&amp;style=for-the-badge" alt="Buy me a beer" height="24"></a><br>
+  <a href="https://github.com/seb5594/hass-pulseaudio_loopback_extended-integration#license"><img src="https://img.shields.io/github/license/seb5594/hass-pulseaudio_loopback_extended-integration?label=license&amp;style=flat" alt="license" height="20"></a>
 </p>
 <!-- header:end -->
 
